@@ -1,0 +1,33 @@
+{% extends 'shop/basic.html' %}
+
+{% block title %} Login Page {% endblock %}
+{% block body %}
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Sorry !</strong> {{message}}.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<div class="container my-2">
+    <h2>Register</h2>
+    <div class="container my-3">
+      <form method="post">{% csrf_token %}
+
+           <div class="form-group my-3">
+            <label>USER NAME</label>
+            <input type="text" class="form-control" name="username" placeholder="Enter Your first Name">
+        </div>
+
+          <div class="form-group my-3">
+            <label>Password</label>
+            <input type="password" class="form-control" name="Password" placeholder="Enter Your City Name">
+        </div>
+
+
+    <button type="submit" class="btn btn-success my-1">Register</button>
+    </form>
+</div>
+</div>
+
+{% endblock %}

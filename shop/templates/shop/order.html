@@ -1,0 +1,98 @@
+{% extends 'shop/basic.html' %}
+
+{% block title %} Check Out {% endblock %}
+{% block css %}
+.popup{
+width: 400px;
+background: blue;
+border-radius: 6px;
+position: absolute;
+top: 0%;
+left: 50%;
+transform: translate(-50%,-50%) scale(0.1);
+text-align: center;
+padding: 0 30px;
+color: #333;
+visibility: hidden;
+transition: transform 0.4s, top 0.4s;
+}
+.popup h2{
+font-size: 38px;
+font-weight: 500;
+margin: 30px 0 10px;
+color: white;
+}
+.popup button{
+width: 100%;
+margin-top:50px;
+padding: 10px 0;
+font-size: 18px;
+border-radius: 4px;
+cursor: pointer;
+box-shadow: 0 5px rgba(0, 0, 0, 0.2)
+}
+.open-popup{
+visibility: visible;
+top: 70%;
+transform: translate(-50%,-50%) scale(1);
+}
+{% endblock %}
+{% block body %}
+
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Sorry !</strong> {{message}}.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+
+
+<div class="container my-2">
+    <h2>Order Now</h2>
+    <div class="container my-3">
+      <form method="post">{% csrf_token %}
+        <div class="form-group my-3">
+            <label for="OrderName">Name</label>
+            <input type="text" class="form-control" id="OrderName" name="name" placeholder="Enter Your Name">
+        </div>
+        <div class="form-group my-3">
+            <label for="OrderEmail">Email</label>
+            <input type="email" class="form-control" id="OrderEmail" name="email" placeholder="Enter Your Email Address">
+        </div>
+        <div class="form-group my-3">
+            <label for="OrderPhone">Mobile/Telephone Number</label>
+            <input type="tel" class="form-control" id="OrderPhone" name="phone" placeholder="Enter Your Phone Mobile Number">
+        </div>
+          <div class="form-group my-3">
+            <label for="OrderCity">City</label>
+            <input type="text" class="form-control" id="OrderCity" name="City" placeholder="Enter Your City Name">
+        </div>
+          <div class="form-group my-3">
+            <label for="OrderState">State</label>
+            <input type="text" class="form-control" id="OrderState" name="State" placeholder="Enter Your Email Address">
+        </div>
+    <div class="form-group my-3">
+        <label for="OrderAddress">Enter Your Address </label>
+        <textarea class="form-control " id="OrderAddress" name="address" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success my-1" onclick="openPopup()">Place Order</button>
+          <div class="popup" id="popup">
+            <h2>Your Order Has been Successful.</h2>
+              <button type="button" onclick="closePopup()">Thanks</button>
+           </div>
+    </form>
+</div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+let popup = document.getElementById("popup");
+function openPopup(){
+popup.classList.add("open-popup")
+}
+function closePopup(){
+popup.classList.remove("open-popup")
+}
+</script>
+{% endblock %}

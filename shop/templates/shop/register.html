@@ -1,0 +1,46 @@
+{% extends 'shop/basic.html' %}
+
+{% block title %} Registration Page {% endblock %}
+{% block body %}
+
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Sorry !</strong> {{message}}.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<div class="container my-2">
+    <h2>Register</h2>
+    <div class="container my-3">
+      <form method="post">{% csrf_token %}
+        <div class="form-group my-3">
+            <label>First Name</label>
+            <input type="text" class="form-control" name="first_name" placeholder="Enter Your first Name">
+        </div>
+          <div class="form-group my-3">
+            <label>Last Name</label>
+            <input type="text" class="form-control" name="last_name" placeholder="Enter Your Name">
+        </div>
+           <div class="form-group my-3">
+            <label>USER NAME</label>
+            <input type="text" class="form-control" name="username" placeholder="Enter Your first Name">
+        </div>
+        <div class="form-group my-3">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" placeholder="Enter Your Email Address">
+        </div>
+          <div class="form-group my-3">
+            <label>Create Password</label>
+            <input type="password" class="form-control" name="Password" placeholder="Enter Your City Name">
+        </div>
+          <div class="form-group my-3">
+            <label>Confirm Password</label>
+            <input type="password" class="form-control"  name="CP" placeholder="Enter Your City Name">
+        </div>
+
+    <button type="submit" class="btn btn-success my-1">Register</button>
+    </form>
+</div>
+</div>
+{% endblock %}
